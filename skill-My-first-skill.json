@@ -1,0 +1,254 @@
+{
+  "intents": [
+    {
+      "intent": "استفسار",
+      "examples": [
+        {
+          "text": "ايش صار"
+        },
+        {
+          "text": "ابغا استفسر"
+        },
+        {
+          "text": "كم باقي"
+        },
+        {
+          "text": "مين انت"
+        },
+        {
+          "text": "كيفك"
+        },
+        {
+          "text": "ممكن سؤال"
+        },
+        {
+          "text": "عندي سؤال"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "start",
+      "examples": [
+        {
+          "text": "hi"
+        },
+        {
+          "text": "hello"
+        },
+        {
+          "text": "السلام عليكم"
+        },
+        {
+          "text": "مساء الخير"
+        },
+        {
+          "text": "صباح النور"
+        }
+      ],
+      "description": "hi"
+    },
+    {
+      "intent": "moving",
+      "examples": [
+        {
+          "text": "go lift"
+        },
+        {
+          "text": "go right"
+        },
+        {
+          "text": "go down"
+        },
+        {
+          "text": "go up"
+        },
+        {
+          "text": "stop"
+        },
+        {
+          "text": "down"
+        },
+        {
+          "text": "right"
+        },
+        {
+          "text": "left"
+        },
+        {
+          "text": "up"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "سؤال",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "سؤال",
+          "synonyms": [
+            "كيف",
+            "متى",
+            "ابغا",
+            "ليه"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "ابغا استفسر",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "تفضل"
+              },
+              {
+                "text": "كيف اخدمك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#استفسار",
+      "dialog_node": "node_10_1595634385546",
+      "previous_sibling": "node_10_1595634332987"
+    },
+    {
+      "type": "standard",
+      "title": "كيفك",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "الحمد لله كيفك أنت/ي"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#استفسار",
+      "dialog_node": "node_10_1595634332987",
+      "previous_sibling": "node_8_1595650223303"
+    },
+    {
+      "type": "standard",
+      "title": "control robot",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ok"
+              },
+              {
+                "text": "i did"
+              },
+              {
+                "text": "ok , i just did"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#moving",
+      "dialog_node": "node_8_1595650223303",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "السلام عليكم ",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "وعليكم السلام"
+              },
+              {
+                "text": "hello"
+              },
+              {
+                "text": "اهلين"
+              },
+              {
+                "text": "hi there"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#start",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_10_1595634385546",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
